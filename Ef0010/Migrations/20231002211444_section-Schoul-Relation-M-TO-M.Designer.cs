@@ -4,6 +4,7 @@ using Ef0010.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ef0010.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231002211444_section-Schoul-Relation-M-TO-M")]
+    partial class sectionSchoulRelationMTOM
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,73 +73,6 @@ namespace Ef0010.Migrations
                             Id = 5,
                             CourseName = "CS-50",
                             Price = 3000m
-                        });
-                });
-
-            modelBuilder.Entity("Ef0010.Entities.Enrollment", b =>
-                {
-                    b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SectionId", "StudentId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Enrollments", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            SectionId = 6,
-                            StudentId = 1
-                        },
-                        new
-                        {
-                            SectionId = 6,
-                            StudentId = 2
-                        },
-                        new
-                        {
-                            SectionId = 7,
-                            StudentId = 3
-                        },
-                        new
-                        {
-                            SectionId = 7,
-                            StudentId = 4
-                        },
-                        new
-                        {
-                            SectionId = 8,
-                            StudentId = 5
-                        },
-                        new
-                        {
-                            SectionId = 8,
-                            StudentId = 6
-                        },
-                        new
-                        {
-                            SectionId = 9,
-                            StudentId = 7
-                        },
-                        new
-                        {
-                            SectionId = 9,
-                            StudentId = 8
-                        },
-                        new
-                        {
-                            SectionId = 10,
-                            StudentId = 9
-                        },
-                        new
-                        {
-                            SectionId = 10,
-                            StudentId = 10
                         });
                 });
 
@@ -575,107 +511,6 @@ namespace Ef0010.Migrations
                             SectionId = 11,
                             StartTime = new TimeSpan(0, 9, 0, 0, 0)
                         });
-                });
-
-            modelBuilder.Entity("Ef0010.Entities.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("LName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Students", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FName = "Fatima",
-                            LName = "Ali"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FName = "Noor",
-                            LName = "Saleh"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FName = "Omar",
-                            LName = "Youssef"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FName = "Huda",
-                            LName = "Ahmed"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FName = "Amira",
-                            LName = "Tariq"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FName = "Zainab",
-                            LName = "Ismail"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FName = "Yousef",
-                            LName = "Farid"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            FName = "Layla",
-                            LName = "Mustafa"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            FName = "Mohammed",
-                            LName = "Adel"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            FName = "Samira",
-                            LName = "Nabil"
-                        });
-                });
-
-            modelBuilder.Entity("Ef0010.Entities.Enrollment", b =>
-                {
-                    b.HasOne("Ef0010.Entities.Section", "Section")
-                        .WithMany()
-                        .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ef0010.Entities.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Section");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Ef0010.Entities.Instructor", b =>

@@ -29,14 +29,14 @@ namespace Ef0010.Data.config
                 .HasForeignKey(x => x.InstructorId)
                 .IsRequired(false);
 
-/*
+
             builder.HasMany(c => c.Schedules)
                 .WithMany(x => x.Sections)
                 .UsingEntity<SectionSchedule>();
 
             builder.HasMany(c => c.Students)
           .WithMany(x => x.Sections)
-          .UsingEntity<Enrollment>();*/
+          .UsingEntity<Enrollment>();
 
             builder.ToTable("Sections");
 
